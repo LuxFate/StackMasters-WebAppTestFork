@@ -47,12 +47,12 @@ db.connect ( (error) => {
 app.use('/', require('./routes/assignmentsRoutes'));
 app.use('/', require('./routes/submissionRoutes'));
 
-app.listen(5000, (err) => {
+/*app.listen(5000, (err) => {
     if(err){
         console.error("Error starting server:", err)
     }else{
         console.log("Server is running on port 5000");
     }
-});
+});*/
 
 

@@ -1,6 +1,23 @@
-// tests/assignment.test.js
 const request = require('supertest');
 const app = require('../app'); // Your Express app
+const http = require('http');
+
+let server;
+
+beforeAll((done) => {
+  server = http.createServer(app);
+  server.listen(5000, () => {
+    console.log('Test server running on port 5000');
+    done();
+  });
+});
+
+afterAll((done) => {
+  server.close(() => {
+    console.log('Test server closed');
+    done();
+  });
+});
 
 describe('Assignments API', () => {
   it('should create a new assignment', async () => {
@@ -23,6 +40,6 @@ describe('Assignments API', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty('assignmentName');
   });
-  
+
   // Add more tests for update, delete, and other scenarios
 });
